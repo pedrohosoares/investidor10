@@ -45,9 +45,12 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostStoreRequest $request,Post $post) : RedirectResponse
+    public function store(
+        PostStoreRequest $request,
+        Post $post
+        ) : RedirectResponse
     {
-        $data = $request->all();
+        $data = $request->validated();
         if(!empty($data['thumbnail']))
         {
             $data['thumbnail'] = $request->file('thumbnail')->store('posts/'.$post->id);
@@ -89,9 +92,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post) : RedirectResponse
+    public function update(
+        PostStoreRequest $request,
+        Post $post
+        ) : RedirectResponse
     {
-        $data = $request->all();
+        $data = $request->validated();
         if(!empty($data['thumbnail'])){
             $data['thumbnail'] = $request->file('thumbnail')->store('posts/'.$post->id);
         }

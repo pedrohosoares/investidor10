@@ -16,14 +16,21 @@
                                 <label for="title">
                                     <span>{{ __('Título') }}</span>
                                     <input required type="text" name="title" placeholder="Título" id="title" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                                    @include('components.validations.erro',['data'=>'title'])
                                 </label>
                                 <label for="slug">
                                     <span>{{ __('Slug') }}</span>
                                     <input type="text" name="slug" placeholder="Slug" id="slug" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
                                 </label>
+                                <label for="description">
+                                    <span>{{ __('Meta Descrição') }}</span>
+                                    <textarea name="description" required id="description" placeholder="Meta Descrição" cols="30" rows="4" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"></textarea>
+                                    @include('components.validations.erro',['data'=>'description'])
+                                </label>
                                 <label for="content">
                                     <span>{{ __('Artigo') }}</span>
                                     <textarea required name="content" id="content" placeholder="Artigo" cols="30" rows="10" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"></textarea>
+                                    @include('components.validations.erro',['data'=>'content'])
                                 </label>
                                 <br />
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">
@@ -42,7 +49,8 @@
                         <aside class="p-5 categories pt-5">
                             <label for="published">
                                 <span>{{ __('Publicar em') }}</span>
-                                <input required type="date" name="published" id="published" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                                <input value="{{ now() }}" required type="datetime-local" name="published" id="published" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                                @include('components.validations.erro',['data'=>'published'])
                             </label>
                             <br />
                             <label for="title">

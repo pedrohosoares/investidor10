@@ -11,7 +11,7 @@ class PostStoreRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize() : bool
     {
         return true;
     }
@@ -21,22 +21,28 @@ class PostStoreRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules() : array
     {
         return [
-            'title' => 'required|string|max:140',
-            'content' => 'required|string|min:50',
-            'category' => 'required',
+            'title' => 'required|string',
+            'content' => 'required|string',
+            'description'=>'',
+            'slug'=>'',
+            'description'=>'',
+            'thumbnail'=>'',
+            'author_id'=>'',
             'published' => 'required'
         ];
     }
 
-    public function messages()
+    public function messages() : array
     {
         return [
             'title.required' => 'Escreva um título',
+            'title.string' => 'Escreva uma frase',
             'content.required' => 'Escreva um conteúdo',
-            'published.required' => 'Escreva uma data'
+            'content.string' => 'Escreva um texto',
+            'published.required' => 'Escreva uma data',
         ];
     }
 }

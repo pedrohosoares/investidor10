@@ -22,6 +22,11 @@
                                     <span>{{ __('Slug') }}</span>
                                     <input type="text" name="slug" value="{{ $post->slug }}" placeholder="Slug" id="slug" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
                                 </label>
+                                <label for="description">
+                                    <span>{{ __('Meta Descrição') }}</span>
+                                    <textarea name="description" required id="description" placeholder="Meta Descrição" cols="30" rows="4" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">{{ $post->description }}</textarea>
+                                    @include('components.validations.erro',['data'=>'description'])
+                                </label>
                                 <label for="content">
                                     <span>{{ __('Artigo') }}</span>
                                     <textarea name="content" required id="content" placeholder="Artigo" cols="30" rows="10" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">{{ $post->content }}</textarea>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Posts;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\CategoryStoreRequest;
 use App\Models\Posts\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -37,9 +38,13 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Category $category) : RedirectResponse
+    public function store(
+        CategoryStoreRequest $request,
+        Category $category
+    ) : RedirectResponse
     {
-        $category->create($request->all());
+        $validation = $request->validated();
+        $category->create($validation);
         return redirect(route('categories.index'))->with('success','Cadastrado com sucesso');
     }
 
@@ -74,9 +79,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category) : RedirectResponse
+    public function update(
+        CategoryStoreRequest $request,
+        Category $category
+    ) : RedirectResponse
     {
-        $category->update($request->all());
+        $validation = $request->validated();
+        $category->update($validation);
         return redirect(route('categories.index'))->with('success','Atualizado com sucesso');
     }
 
