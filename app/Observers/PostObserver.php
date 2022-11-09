@@ -14,6 +14,15 @@ class PostObserver
      * @param  \App\Models\Post  $post
      * @return void
      */
+
+    public $nameUser;
+    public $emailUser;
+
+    public function __construct(){
+        $this->nameUser = returnNameOfUserLogged();
+        $this->emailUser = returnNameOfEmailLogged();
+    }
+
     public function creating(Post $post) : Object
     {
         $post['author_id'] = 1;
@@ -23,12 +32,10 @@ class PostObserver
 
     public function created(Post $post) : Object
     {
-        $nameUser = Auth()->user()->name;
-        $emailUser = Auth()->user()->email;
         History::storedLog(
             '1',
             $post,
-            "O post ID {$post->id}, '{$post->title}' foi cadastrado pelo usuário {$nameUser} - {$emailUser}"
+            "O post ID {$post->id}, '{$post->title}' foi cadastrado pelo usuário {$this->nameUser} - {$this->emailUser}"
         );
         return $post;
     }
@@ -48,24 +55,20 @@ class PostObserver
 
     public function updated(Post $post) : Object
     {
-        $nameUser = Auth()->user()->name;
-        $emailUser = Auth()->user()->email;
         History::storedLog(
             '1',
             $post,
-            "O post ID {$post->id}, '{$post->title}' foi atualizado pelo usuário {$nameUser} - {$emailUser}"
+            "O post ID {$post->id}, '{$post->title}' foi atualizado pelo usuário {$this->nameUser} - {$this->emailUser}"
         );
         return $post;
     }
 
     public function deleted(Post $post) : Object
     {
-        $nameUser = Auth()->user()->name;
-        $emailUser = Auth()->user()->email;
         History::storedLog(
             '1',
             $post,
-            "O post ID {$post->id}, '{$post->title}' foi excluido pelo usuário {$nameUser} - {$emailUser}"
+            "O post ID {$post->id}, '{$post->title}' foi excluido pelo usuário {$this->nameUser} - {$this->emailUser}"
         );
         return $post;
     }
