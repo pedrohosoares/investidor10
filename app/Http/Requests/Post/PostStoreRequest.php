@@ -13,7 +13,7 @@ class PostStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,6 +26,7 @@ class PostStoreRequest extends FormRequest
         return [
             'title' => 'required|string|max:140',
             'content' => 'required|string|min:50',
+            'category' => 'required',
             'published' => 'required'
         ];
     }

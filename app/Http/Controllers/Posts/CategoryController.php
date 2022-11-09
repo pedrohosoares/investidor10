@@ -40,7 +40,7 @@ class CategoryController extends Controller
     public function store(Request $request,Category $category) : RedirectResponse
     {
         $category->create($request->all());
-        return redirect(route('categories.index'))->with('sucesso','Cadastrado com sucesso');
+        return redirect(route('categories.index'))->with('success','Cadastrado com sucesso');
     }
 
     /**
@@ -77,7 +77,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category) : RedirectResponse
     {
         $category->update($request->all());
-        return redirect(route('categories.index'))->with('updated','Atualizado com sucesso');
+        return redirect(route('categories.index'))->with('success','Atualizado com sucesso');
     }
 
     /**
@@ -89,6 +89,6 @@ class CategoryController extends Controller
     public function destroy(Category $category) : RedirectResponse
     {
         $category->delete();
-        return redirect(route('categories.index'))->with('deleted','Deletado com sucesso');
+        return redirect(route('categories.index'))->with('success','Deletado com sucesso');
     }
 }

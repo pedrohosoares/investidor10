@@ -9,10 +9,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 block p-6 rounded-lg shadow-lg bg-white">
+                    <div class="grid md:grid-cols-80/20 grid-cols-1 gap-4 block rounded-lg shadow-lg bg-white">
                         <div class="form-group mb-6">
                             @csrf
-                            <div>
+                            <div class="p-5">
                                 <label for="title">
                                     <span>{{ __('Título') }}</span>
                                     <input required type="text" name="title" placeholder="Título" id="title" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
@@ -25,17 +25,26 @@
                                     <span>{{ __('Artigo') }}</span>
                                     <textarea required name="content" id="content" placeholder="Artigo" cols="30" rows="10" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"></textarea>
                                 </label>
-                                <label for="published">
-                                    <span>{{ __('Publicar em') }}</span>
-                                    <input required type="date" name="published" id="published" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                                <br />
+                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">
+                                    {{ __('Thumbnail') }}
                                 </label>
+                                <input name="thumbnail" class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file">
+                                @if(!empty($post->thumbnail))
+                                    <img src="{{ Storage::url($post->thumbnail) }}" class="" />
+                                @endif
                                 <br />
                                 <button
                                 class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                type="submit">Cadastrar</button>
+                                type="submit">{{ __('Cadastrar') }}</button>
                             </div>
                         </div>
-                        <aside class="categories">
+                        <aside class="p-5 categories pt-5">
+                            <label for="published">
+                                <span>{{ __('Publicar em') }}</span>
+                                <input required type="date" name="published" id="published" class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                            </label>
+                            <br />
                             <label for="title">
                                 <span>{{ __('Categorias') }}</span>
                             </label>
@@ -47,7 +56,6 @@
                                     </label>
                                 </div>
                             @endforeach
-                            <a href="{{ route('categories.create') }}" rel="{{ __('Add Nova Categoria') }}">{{ __('Add Nova Categoria') }}</a>
                         </aside>
                     </div>
                 </form>

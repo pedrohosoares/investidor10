@@ -45,7 +45,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Post $post) : RedirectResponse
+    public function store(PostStoreRequest $request,Post $post) : RedirectResponse
     {
         $data = $request->all();
         if(!empty($data['thumbnail']))
@@ -54,7 +54,7 @@ class PostController extends Controller
         }
         $newPost = $post->create($data);
         $newPost->categories()->sync($request->category);
-        return redirect(route('posts.index'))->with('created','Salvo com sucesso');
+        return redirect(route('posts.index'))->with('success','Salvo com sucesso');
     }
 
     /**
@@ -97,7 +97,7 @@ class PostController extends Controller
         }
         $post->update($data);
         $post->categories()->sync($request->category);
-        return redirect(route('posts.index'))->with('created','Atualizado com sucesso');
+        return redirect(route('posts.index'))->with('success','Atualizado com sucesso');
     }
 
     /**
@@ -109,6 +109,6 @@ class PostController extends Controller
     public function destroy(Post $post) : RedirectResponse
     {
         $post->delete();
-        return redirect(route('posts.index'))->with('deleted','Deletado com sucesso');
+        return redirect(route('posts.index'))->with('success','Deletado com sucesso');
     }
 }

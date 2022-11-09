@@ -7,6 +7,7 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @include('components.alerts.success')
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="flex space-x-2">
                     <a href="{{ route('categories.create') }}" rel="Nova categoria" type="button"
@@ -47,7 +48,7 @@
                                                     {{ $category->name }}
                                                 </td>
                                                 <td
-                                                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                    class="w-4 text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                     <a href="{{ route('categories.edit', $category->id) }}"
                                                         rel="Editar">
                                                         <svg style="width:24px;height:24px;"
@@ -89,7 +90,7 @@
                                                     </a>
                                                 </td>
                                                 <td
-                                                    class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                    class="w-4 text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                     <form method="POST"
                                                         action="{{ route('categories.destroy', $category->id) }}">
                                                         @csrf
